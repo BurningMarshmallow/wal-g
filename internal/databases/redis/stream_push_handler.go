@@ -23,7 +23,7 @@ func HandleStreamPush(uploader *Uploader) {
 		tracelog.ErrorLogger.Println("WARNING: stdin is terminal: operating in test mode!")
 		stream = strings.NewReader("testtesttest")
 	}
-	backupName := "dump_" + time.Now().Format(time.RFC3339)
+	backupName := "dump_" + time.Now().Format(time.RFC3339) + "." + uploader.Compressor.FileExtension()
 	err := uploader.UploadStream(backupName, stream)
 	if err != nil {
 		tracelog.ErrorLogger.Fatalf("%+v\n", err)
