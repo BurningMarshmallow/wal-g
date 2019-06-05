@@ -75,7 +75,7 @@ func getBackupTimeSlices(backups []storage.Object) []BackupTime {
 	sortTimes := make([]BackupTime, len(backups))
 	for i, object := range backups {
 		key := object.GetName()
-		if !strings.HasSuffix(key, utility.SentinelSuffix) {
+		if !strings.HasSuffix(key, utility.SentinelSuffix) && !strings.HasPrefix(key, "dump") { // TMP: temporary workaround for Redis dumps
 			continue
 		}
 		time := object.GetLastModified()
