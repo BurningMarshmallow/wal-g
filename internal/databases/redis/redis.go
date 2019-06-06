@@ -5,6 +5,7 @@ import (
 	"github.com/wal-g/wal-g/internal"
 	"github.com/wal-g/wal-g/internal/tracelog"
 	"strconv"
+	"time"
 )
 
 type Uploader struct {
@@ -32,4 +33,11 @@ func getRedisConnection() *redis.Client {
 		Password: redisPassword,
 		DB:       redisDb,
 	})
+}
+
+type StreamSentinelDto struct {
+	BackupName           string    `json:"backup_name"`
+	CompressionExtension string    `json:"compression_extension"`
+	StartTime            time.Time `json:"start_time"`
+	EndTime              time.Time `json:"end_time"`
 }
